@@ -1,0 +1,638 @@
+/* SignIn Page Styles - Perfect Professional Medical Theme */
+.signin-container {
+  display: flex;
+  height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow: hidden;
+}
+
+/* Loading State */
+.signin-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #e6f7ff 0%, #e8f5e9 100%);
+  color: #333;
+}
+
+.signin-loading .loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #e3f2fd;
+  border-top: 4px solid #1976d2;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+.signin-loading p {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 0;
+}
+
+/* Left Side - Medical Branding */
+.signin-left {
+  flex: 1;
+  background: linear-gradient(135deg, #e6f7ff 0%, #e8f5e9 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  position: relative;
+}
+
+.signin-left::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(25,118,210,0.05)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  opacity: 0.3;
+}
+
+.medical-branding {
+  max-width: 500px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.brand-header {
+  margin-bottom: 3rem;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.brand-icon {
+  width: 48px;
+  height: 48px;
+  color: #1976d2;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.brand-icon.activity {
+  color: #4caf50;
+  animation-delay: 1s;
+}
+
+.brand-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.brand-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  font-weight: 500;
+  margin: 0;
+}
+
+.medical-features {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.feature-card:hover::before {
+  left: 100%;
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.feature-icon {
+  width: 40px;
+  height: 40px;
+  color: #4caf50;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.feature-content h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 0.5rem 0;
+}
+
+.feature-content p {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.brand-footer {
+  margin-top: auto;
+  padding-top: 2rem;
+}
+
+.brand-footer p {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0 0 1rem 0;
+  font-style: italic;
+}
+
+.trust-badges {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.badge {
+  background: linear-gradient(135deg, #4caf50, #66bb6a);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.2);
+}
+
+/* Right Side - Sign In Form */
+.signin-right {
+  flex: 1;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+}
+
+.signin-right::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(76, 175, 80, 0.05), transparent);
+  border-radius: 50%;
+  transform: translate(50%, -50%);
+}
+
+.signin-form-container {
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  z-index: 2;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.form-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-icon {
+  width: 56px;
+  height: 56px;
+  color: #e91e63;
+  background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+  padding: 12px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.2);
+}
+
+.form-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.form-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Error Message */
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #ffebee, #ffcdd2);
+  border: 1px solid #f8bbd9;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  animation: slideIn 0.3s ease;
+}
+
+.error-icon {
+  width: 20px;
+  height: 20px;
+  color: #e91e63;
+  flex-shrink: 0;
+}
+
+.error-message span {
+  color: #c62828;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.clerk-form-wrapper {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+/* Clerk Component Customization */
+.clerk-root-box {
+  width: 100%;
+}
+
+.clerk-card {
+  border-radius: 16px !important;
+  border: 1px solid #e0e0e0 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  background: #ffffff !important;
+  padding: 0 !important;
+  transition: all 0.3s ease !important;
+}
+
+.clerk-card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
+}
+
+.clerk-header {
+  display: none !important;
+}
+
+.clerk-form-label {
+  color: #333 !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.clerk-form-input {
+  border: 2px solid #e0e0e0 !important;
+  border-radius: 12px !important;
+  padding: 0.875rem 1rem !important;
+  font-size: 1rem !important;
+  transition: all 0.3s ease !important;
+  background: #f8f9fa !important;
+  height: auto !important;
+}
+
+.clerk-form-input:focus {
+  border-color: #4caf50 !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.1) !important;
+  transform: translateY(-1px) !important;
+}
+
+.clerk-form-button {
+  background: linear-gradient(135deg, #4caf50, #66bb6a) !important;
+  border: none !important;
+  border-radius: 12px !important;
+  padding: 0.875rem 1.5rem !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+  width: 100% !important;
+  height: auto !important;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.clerk-form-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.clerk-form-button:hover::before {
+  left: 100%;
+}
+
+.clerk-form-button:hover {
+  background: linear-gradient(135deg, #388e3c, #4caf50) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3) !important;
+}
+
+.clerk-form-button:active {
+  transform: translateY(0) !important;
+}
+
+.clerk-social-buttons {
+  margin-bottom: 1.5rem !important;
+}
+
+.clerk-social-button {
+  border: 2px solid #e0e0e0 !important;
+  border-radius: 12px !important;
+  padding: 0.75rem !important;
+  transition: all 0.3s ease !important;
+  background: #ffffff !important;
+  font-weight: 500 !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.clerk-social-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.05), transparent);
+  transition: left 0.5s ease;
+}
+
+.clerk-social-button:hover::before {
+  left: 100%;
+}
+
+.clerk-social-button:hover {
+  border-color: #4caf50 !important;
+  background: #f8f9fa !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.clerk-footer-action {
+  text-align: center !important;
+  margin-top: 1.5rem !important;
+}
+
+.clerk-footer-link {
+  color: #4caf50 !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+.clerk-footer-link:hover {
+  color: #388e3c !important;
+  text-decoration: underline !important;
+}
+
+.form-footer {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.footer-text {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0 0 1rem 0;
+}
+
+.footer-link {
+  color: #4caf50;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #388e3c;
+  text-decoration: underline;
+}
+
+.help-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.help-link {
+  color: #666;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.help-link:hover {
+  color: #4caf50;
+  text-decoration: underline;
+}
+
+/* Security Notice */
+.security-notice {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: linear-gradient(135deg, #e3f2fd, #f1f8e9);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-top: 2rem;
+  border: 1px solid #bbdefb;
+}
+
+.security-icon {
+  width: 24px;
+  height: 24px;
+  color: #1976d2;
+  flex-shrink: 0;
+}
+
+.security-content h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 0.25rem 0;
+}
+
+.security-content p {
+  font-size: 0.8rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .brand-title {
+    font-size: 2rem;
+  }
+  
+  .feature-card {
+    padding: 1.25rem;
+  }
+
+  .trust-badges {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .signin-container {
+    flex-direction: column;
+  }
+  
+  .signin-left {
+    flex: none;
+    min-height: 50vh;
+    padding: 2rem 1.5rem;
+  }
+  
+  .brand-title {
+    font-size: 1.75rem;
+  }
+  
+  .medical-features {
+    gap: 1rem;
+  }
+  
+  .feature-card {
+    padding: 1rem;
+  }
+  
+  .signin-right {
+    flex: 1;
+    min-height: 50vh;
+    padding: 1.5rem;
+  }
+  
+  .form-title {
+    font-size: 1.5rem;
+  }
+
+  .help-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .security-notice {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .signin-left {
+    padding: 1.5rem 1rem;
+  }
+  
+  .brand-title {
+    font-size: 1.5rem;
+  }
+  
+  .brand-subtitle {
+    font-size: 1rem;
+  }
+  
+  .feature-icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .feature-content h3 {
+    font-size: 1rem;
+  }
+  
+  .form-icon {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .form-title {
+    font-size: 1.25rem;
+  }
+
+  .trust-badges {
+    gap: 0.25rem;
+  }
+
+  .badge {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.5rem;
+  }
+}

@@ -1,0 +1,155 @@
+.dt {
+  padding: 14px;
+}
+
+.dt-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.dt-title {
+  margin: 0;
+  font-size: 16px;
+}
+
+.dt-subtitle {
+  margin: 4px 0 0;
+  color: var(--color-text-secondary);
+  font-size: 12px;
+}
+
+.dt-search {
+  padding: 10px 12px;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+  font-size: 14px;
+  min-width: 240px;
+  outline: none;
+}
+
+.dt-search:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
+}
+
+.dt-table-wrap {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: auto;
+  max-height: 420px;
+}
+
+.dt-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 640px;
+}
+
+.dt-table thead th {
+  position: sticky;
+  top: 0;
+  background: #f8fafc;
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.35px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--color-border);
+  padding: 10px 12px;
+  text-align: left;
+  user-select: none;
+}
+
+.dt-table thead th.sortable {
+  cursor: pointer;
+}
+
+.dt-table tbody td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 13px;
+  background: white;
+}
+
+.dt-table tbody tr:hover td {
+  background: rgba(59, 130, 246, 0.04);
+}
+
+.dt-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.th-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.th-sort {
+  margin-left: 8px;
+  color: #94a3b8;
+  font-size: 10px;
+}
+
+.dt-empty {
+  padding: 18px 12px;
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.dt-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.dt-count {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+.dt-pager {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.dt-page {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+.dt-page-size {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+.dt-page-size select {
+  border: 1px solid var(--color-border);
+  border-radius: 9999px;
+  padding: 8px 10px;
+  background: white;
+}
+
+@media (max-width: 600px) {
+  .dt-search {
+    min-width: 100%;
+  }
+}
+

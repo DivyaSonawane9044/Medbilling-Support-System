@@ -1,0 +1,364 @@
+.bill {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.bill-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 8px 0 14px;
+  flex-wrap: wrap;
+}
+
+.bill-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.bill-subtitle {
+  margin: 4px 0 0;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.bill-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.bill-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 14px;
+}
+
+.bill-left,
+.bill-right {
+  padding: 14px;
+}
+
+.section-title {
+  margin: 0 0 10px;
+  font-size: 15px;
+}
+
+.muted {
+  margin: 4px 0 0;
+  color: var(--color-text-secondary);
+  font-size: 12px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.file {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px dashed var(--color-border);
+  background: #fff;
+}
+
+.file-meta {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+.dose-card {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-border);
+}
+
+.dose-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.dose-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.dose-grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.chk {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.entry-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.barcode-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.barcode-row .ti {
+  flex: 1;
+}
+
+.mode-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.mode-btn {
+  border: 1px solid var(--color-border);
+  background: white;
+  border-radius: 9999px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.mode-btn.active {
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.22);
+  color: #1d4ed8;
+}
+
+.mode-meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.qty-row {
+  display: grid;
+  grid-template-columns: 1fr 160px;
+  gap: 10px;
+  align-items: end;
+}
+
+.price-preview {
+  padding: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: rgba(59, 130, 246, 0.04);
+}
+
+.price-value {
+  margin-top: 6px;
+  font-weight: 900;
+  font-size: 16px;
+}
+
+.add-btn {
+  justify-content: center;
+}
+
+.items-wrap {
+  margin-top: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  overflow: auto;
+  max-height: 360px;
+}
+
+.items-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 860px;
+}
+
+.items-table thead th {
+  position: sticky;
+  top: 0;
+  background: #f8fafc;
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.35px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--color-border);
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.items-table tbody td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--color-border);
+  background: #fff;
+  font-size: 13px;
+}
+
+.items-table tbody tr:hover td {
+  background: rgba(59, 130, 246, 0.04);
+}
+
+.items-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.it-name {
+  font-weight: 900;
+}
+
+.it-sub {
+  margin-top: 2px;
+  color: var(--color-text-secondary);
+  font-size: 12px;
+}
+
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.strong {
+  font-weight: 900;
+}
+
+.empty {
+  padding: 16px 12px;
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.icon-btn {
+  border: 1px solid var(--color-border);
+  background: #fff;
+  border-radius: 12px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.icon-btn:hover {
+  border-color: rgba(239, 68, 68, 0.35);
+  background: rgba(239, 68, 68, 0.04);
+}
+
+.summary {
+  margin-top: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 12px;
+  background: rgba(16, 185, 129, 0.04);
+}
+
+.sum-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 4px;
+  border-bottom: 1px dashed rgba(148, 163, 184, 0.6);
+  font-size: 13px;
+}
+
+.sum-row:last-child {
+  border-bottom: none;
+}
+
+.sum-grand {
+  font-size: 15px;
+}
+
+@media (max-width: 1100px) {
+  .bill-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .qty-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Printable invoice styles */
+#bill-container {
+  display: block;
+}
+
+.invoice {
+  font-family: inherit;
+  padding: 18px;
+  background: #fff;
+  color: #000;
+}
+
+.invoice .inv-head h2 {
+  margin: 0 0 6px 0;
+}
+
+.inv-customer {
+  margin: 8px 0 12px;
+  font-size: 13px;
+}
+
+.inv-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 12px;
+}
+
+.inv-table th, .inv-table td {
+  border: 1px solid #ddd;
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.inv-table th { background: #f8fafc; }
+.inv-totals { margin-top: 8px; font-size: 14px; }
+.inv-totals .grand { font-weight: 900; margin-top: 6px; }
+
+.inv-item-name {
+  font-weight: 900;
+}
+.inv-dose-wrap {
+  margin-top: 6px;
+}
+.inv-dose-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.inv-dose-table td {
+  border: 0;
+  padding: 2px 6px;
+}
+
+@media print {
+  /* hide everything except the printable area */
+  body * { visibility: hidden !important; }
+  #bill-container, #bill-container * { visibility: visible !important; }
+  #bill-container { display: block !important; position: absolute; left: 0; top: 0; width: 100%; padding: 12px; }
+}

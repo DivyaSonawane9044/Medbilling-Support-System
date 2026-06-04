@@ -1,0 +1,1 @@
+import{j as l}from"./index-DoekTKtT.js";function c({value:s,onChange:t,options:a,placeholder:r="Select...",...i}){return l.jsxs("select",{className:"sel",value:s,onChange:t,...i,children:[l.jsx("option",{value:"",disabled:!0,children:r}),a.map(e=>l.jsx("option",{value:e.value,children:e.label},e.value))]})}export{c as S};

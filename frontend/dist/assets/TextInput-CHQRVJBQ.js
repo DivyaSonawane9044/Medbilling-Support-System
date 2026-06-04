@@ -1,0 +1,1 @@
+import{j as x}from"./index-DoekTKtT.js";function o({value:t,onChange:s,placeholder:e,type:n="text",...r}){return x.jsx("input",{className:"ti",value:t,onChange:s,placeholder:e,type:n,...r})}export{o as T};

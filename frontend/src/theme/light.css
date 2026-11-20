@@ -1,0 +1,494 @@
+/* White Medical theme overrides (html[data-theme="light"]).
+   Tokens in styles/design-tokens.css handle most colours; this file covers the hand-tuned dark-only values
+   (sidebar, top bar, hero, stat tiles, skeletons ...) and adds the clinical motifs:
+   a faint medical-cross pattern, an ECG heartbeat line in hero headers and teal health accents.
+   Selectors are prefixed with :root[data-theme="light"] so they outrank page CSS loaded later. */
+
+:root[data-theme="light"] body {
+  background: var(--mb-bg);
+}
+
+:root[data-theme="light"] ::selection {
+  background: rgba(212, 175, 55, 0.28);
+  color: #111827;
+}
+
+:root[data-theme="light"] * {
+  scrollbar-color: #cfd6e0 transparent;
+}
+:root[data-theme="light"] *::-webkit-scrollbar-thumb {
+  background: #cfd6e0;
+  background-clip: padding-box;
+}
+
+/* ---------- App background: clean white with soft light pools + faint medical crosses ---------- */
+:root[data-theme="light"] .app-shell::before {
+  background:
+    radial-gradient(900px 520px at 88% -8%, rgba(244, 214, 117, 0.22), transparent 62%),
+    radial-gradient(760px 520px at 12% 105%, rgba(14, 159, 142, 0.07), transparent 60%),
+    linear-gradient(180deg, #f8fafc 0%, #f3f6f9 100%);
+}
+:root[data-theme="light"] .app-shell::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cpath d='M29 22h6v7h7v6h-7v7h-6v-7h-7v-6h7z' fill='%230e9f8e' fill-opacity='0.07'/%3E%3C/svg%3E");
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 85% 70% at 60% 0%, #000 0%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 70% at 60% 0%, #000 0%, transparent 80%);
+}
+
+/* ---------- Cards & buttons ---------- */
+:root[data-theme="light"] .card:hover {
+  border-color: rgba(176, 138, 34, 0.28);
+}
+:root[data-theme="light"] .btn {
+  border-color: #dfe4ec;
+  background: #ffffff;
+  color: #1f2937;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+}
+:root[data-theme="light"] .btn:hover:not(:disabled) {
+  border-color: rgba(176, 138, 34, 0.55);
+  color: #7a5d12;
+  box-shadow: 0 8px 18px -12px rgba(176, 138, 34, 0.5);
+}
+:root[data-theme="light"] .btn-primary,
+:root[data-theme="light"] .btn-primary:hover:not(:disabled) {
+  border-color: transparent;
+  color: var(--mb-on-gold);
+}
+:root[data-theme="light"] .btn-primary {
+  background-image: var(--mb-grad-gold);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset, 0 10px 22px -12px rgba(176, 138, 34, 0.7);
+}
+:root[data-theme="light"] .btn-ghost {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  color: var(--mb-text-2);
+}
+:root[data-theme="light"] .btn-navy {
+  background: #fffaf0;
+  border-color: rgba(176, 138, 34, 0.4);
+  color: #7a5d12;
+}
+:root[data-theme="light"] .btn-danger {
+  background: var(--mb-danger-bg);
+  border-color: rgba(198, 40, 40, 0.2);
+  color: var(--mb-danger);
+}
+:root[data-theme="light"] .btn-danger:hover:not(:disabled) {
+  background: #c62828;
+  color: #fff;
+}
+:root[data-theme="light"] input:-webkit-autofill,
+:root[data-theme="light"] input:-webkit-autofill:hover,
+:root[data-theme="light"] input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #111827;
+  -webkit-box-shadow: 0 0 0 1000px #f8fafc inset;
+  caret-color: #111827;
+}
+:root[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator,
+:root[data-theme="light"] input[type="month"]::-webkit-calendar-picker-indicator,
+:root[data-theme="light"] input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: none;
+  opacity: 0.6;
+}
+:root[data-theme="light"] select option,
+:root[data-theme="light"] select optgroup {
+  background: #ffffff;
+  color: #111827;
+}
+
+/* ---------- Sidebar: white, gold active state, teal health dot ---------- */
+:root[data-theme="light"] .sidebar {
+  background: #ffffff;
+  background-image: radial-gradient(360px 240px at 0% 0%, rgba(244, 214, 117, 0.25), transparent 70%),
+    linear-gradient(180deg, #ffffff 0%, #fcfcfd 100%);
+  border-right: 1px solid #e7ebf1;
+  box-shadow: 8px 0 30px -24px rgba(16, 24, 40, 0.25);
+  color: #4b5563;
+}
+:root[data-theme="light"] .sidebar::after {
+  background: linear-gradient(180deg, rgba(176, 138, 34, 0.5), transparent);
+}
+:root[data-theme="light"] .sidebar-title {
+  color: #111827;
+}
+:root[data-theme="light"] .sidebar-subtitle {
+  color: #9c7a1d;
+}
+:root[data-theme="light"] .sidebar-group-title {
+  color: #9aa3b2;
+}
+:root[data-theme="light"] .sidebar-link {
+  color: #374151;
+}
+:root[data-theme="light"] .sidebar-link:hover {
+  color: #111827;
+  background: #f5f7fa;
+}
+:root[data-theme="light"] .sidebar-link.active {
+  color: #7a5d12;
+}
+:root[data-theme="light"] .sidebar-active-bg {
+  background: linear-gradient(90deg, rgba(244, 214, 117, 0.38), rgba(244, 214, 117, 0.08) 75%, transparent);
+  box-shadow: inset 0 0 0 1px rgba(176, 138, 34, 0.25), 0 8px 20px -14px rgba(176, 138, 34, 0.6);
+}
+:root[data-theme="light"] .sidebar-icon {
+  color: #8a93a3;
+}
+:root[data-theme="light"] .sidebar-link:hover .sidebar-icon {
+  color: #9c7a1d;
+}
+:root[data-theme="light"] .sidebar-link.active .sidebar-icon {
+  color: #9c7a1d;
+  filter: none;
+}
+:root[data-theme="light"] .sidebar-profile {
+  border-color: rgba(176, 138, 34, 0.2);
+  background: linear-gradient(135deg, rgba(244, 214, 117, 0.18), #ffffff);
+}
+:root[data-theme="light"] .sidebar-profile__avatar {
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 3px rgba(176, 138, 34, 0.6);
+}
+:root[data-theme="light"] .sidebar-profile__name {
+  color: #111827;
+}
+:root[data-theme="light"] .sidebar-collapse {
+  border-color: #e7ebf1;
+  background: #f8fafc;
+  color: #6b7280;
+}
+:root[data-theme="light"] .sidebar-collapse:hover {
+  border-color: rgba(176, 138, 34, 0.4);
+  background: #fffaf0;
+  color: #7a5d12;
+}
+:root[data-theme="light"] .sidebar-close {
+  border-color: #e7ebf1;
+  background: #f8fafc;
+  color: #111827;
+}
+:root[data-theme="light"] .sidebar.is-collapsed .sidebar-group {
+  border-top-color: #eef1f5;
+}
+:root[data-theme="light"] .app-shell-overlay {
+  background: rgba(15, 23, 42, 0.35);
+}
+
+/* ---------- Top bar ---------- */
+:root[data-theme="light"] .top-nav {
+  background: rgba(255, 255, 255, 0.82);
+  border-bottom: 1px solid #e7ebf1;
+  box-shadow: 0 6px 20px -18px rgba(16, 24, 40, 0.35);
+}
+:root[data-theme="light"] .top-nav-icon-btn {
+  background: #ffffff;
+  border-color: #e3e8ef;
+  color: #374151;
+}
+:root[data-theme="light"] .top-nav-icon-btn:hover {
+  color: #7a5d12;
+}
+:root[data-theme="light"] .top-nav-search {
+  background: #f5f7fa;
+}
+:root[data-theme="light"] .top-nav-search:focus {
+  background: #ffffff;
+}
+:root[data-theme="light"] .top-nav-alerts-panel {
+  background: rgba(255, 255, 255, 0.98);
+}
+:root[data-theme="light"] .top-nav-alerts-item:hover {
+  background: #fffaf0;
+}
+:root[data-theme="light"] .top-nav-alerts-count {
+  background: #f1f4f8;
+}
+:root[data-theme="light"] .notification-badge {
+  border-color: #ffffff;
+}
+:root[data-theme="light"] .clerk-avatar-box {
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 3px rgba(176, 138, 34, 0.6);
+}
+
+/* ---------- Page header: white hero with gold light, teal glow and an ECG heartbeat line ---------- */
+:root[data-theme="light"] .mb-pagehead__eyebrow {
+  color: #9c7a1d;
+}
+:root[data-theme="light"] .mb-pagehead--hero {
+  border-color: rgba(176, 138, 34, 0.25);
+  color: #111827;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 24px 48px -28px rgba(176, 138, 34, 0.45);
+}
+:root[data-theme="light"] .mb-pagehead--hero::after {
+  background: radial-gradient(circle, rgba(244, 214, 117, 0.45), transparent 68%);
+}
+:root[data-theme="light"] .mb-pagehead--hero .mb-pagehead__title {
+  color: #111827;
+}
+:root[data-theme="light"] .mb-pagehead--hero .mb-pagehead__subtitle {
+  color: #5b6475;
+}
+:root[data-theme="light"] .mb-pagehead--hero .btn:not(.btn-primary) {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: #e3e8ef;
+  color: #1f2937;
+}
+:root[data-theme="light"] .mb-pagehead--hero .btn:not(.btn-primary):hover:not(:disabled) {
+  background: #fffaf0;
+  border-color: rgba(176, 138, 34, 0.5);
+  color: #7a5d12;
+}
+:root[data-theme="light"] .mb-ecg path {
+  stroke: #0e9f8e;
+}
+:root[data-theme="light"] .mb-ecg .mb-ecg__glow {
+  stroke: rgba(14, 159, 142, 0.25);
+}
+:root[data-theme="light"] .mb-deco__ring {
+  border-color: rgba(176, 138, 34, 0.3);
+}
+:root[data-theme="light"] .mb-deco__item {
+  filter: drop-shadow(0 14px 18px rgba(120, 90, 20, 0.25));
+}
+:root[data-theme="light"] .mb-deco__capsule {
+  background: linear-gradient(90deg, #f1d272 0%, #c9a12e 50%, #ffffff 50%, #e8edf3 100%);
+  box-shadow: inset 0 6px 8px rgba(255, 255, 255, 0.6), inset 0 -8px 10px rgba(16, 24, 40, 0.12), 0 0 0 1px rgba(16, 24, 40, 0.06);
+}
+
+/* ---------- Stat cards: white tiles, tinted 3D icons ---------- */
+:root[data-theme="light"] .mb-stat {
+  box-shadow: var(--mb-shadow-sm);
+}
+:root[data-theme="light"] .mb-stat::after {
+  background: radial-gradient(420px circle at var(--gx) var(--gy), rgba(244, 214, 117, 0.22), transparent 45%);
+}
+:root[data-theme="light"] .mb-stat:hover {
+  border-color: rgba(176, 138, 34, 0.4);
+  box-shadow: var(--mb-shadow-md), 0 16px 34px -22px rgba(176, 138, 34, 0.6);
+}
+:root[data-theme="light"] .mb-stat__icon,
+:root[data-theme="light"] .dose-chip {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 60%),
+    radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--tone) 22%, transparent), transparent 75%),
+    color-mix(in srgb, var(--tone) 12%, #ffffff);
+  box-shadow: inset 0 1px 0 #ffffff, inset 0 -2px 0 color-mix(in srgb, var(--tone) 14%, transparent),
+    inset 0 0 0 1px color-mix(in srgb, var(--tone) 26%, transparent), 0 8px 16px -10px color-mix(in srgb, var(--tone) 60%, transparent);
+}
+:root[data-theme="light"] .mb-stat__icon svg,
+:root[data-theme="light"] .dose-chip svg {
+  filter: none;
+}
+:root[data-theme="light"] .mb-stat__spark circle {
+  stroke: #ffffff;
+}
+:root[data-theme="light"] .mb-stat--coral {
+  --tone: #d9622b;
+}
+:root[data-theme="light"] .dose-chip--coral {
+  --tone: #d9622b;
+}
+
+/* ---------- Status, skeleton, misc kit ---------- */
+:root[data-theme="light"] .mb-status--success { border-color: rgba(4, 120, 87, 0.18); }
+:root[data-theme="light"] .mb-status--warning { border-color: rgba(163, 95, 0, 0.18); }
+:root[data-theme="light"] .mb-status--danger { border-color: rgba(198, 40, 40, 0.18); }
+:root[data-theme="light"] .mb-status--info { border-color: rgba(29, 95, 196, 0.18); }
+:root[data-theme="light"] .mb-status--purple { border-color: rgba(91, 63, 196, 0.18); }
+:root[data-theme="light"] .mb-status--neutral { background: #f1f4f8; color: #4b5563; border-color: #e3e8ef; }
+:root[data-theme="light"] .mb-skel {
+  background: linear-gradient(90deg, #eef1f5 0px, #f7f9fb 160px, #eef1f5 320px);
+  background-size: 800px 100%;
+}
+:root[data-theme="light"] .mb-progress__track {
+  background: #eef1f5;
+  box-shadow: none;
+}
+:root[data-theme="light"] .mb-progress__fill--success {
+  background: linear-gradient(90deg, #b08a22, #e2c158);
+  box-shadow: none;
+}
+:root[data-theme="light"] .mb-avatar--navy { background: #f1f4f8; color: #374151; }
+:root[data-theme="light"] .mb-avatar--coral { color: #b4501f; }
+:root[data-theme="light"] .mb-avatar--teal { color: #7a5d12; }
+:root[data-theme="light"] .mb-timeline::before {
+  background: linear-gradient(180deg, rgba(176, 138, 34, 0.45), #eef1f5);
+}
+:root[data-theme="light"] .mb-timeline__dot {
+  background: #ffffff;
+  box-shadow: none;
+}
+:root[data-theme="light"] .mb-modal__backdrop {
+  background: rgba(15, 23, 42, 0.4);
+}
+:root[data-theme="light"] .mb-modal {
+  border-color: rgba(176, 138, 34, 0.22);
+  box-shadow: var(--mb-shadow-lg);
+}
+:root[data-theme="light"] .mb-gcard--brand {
+  color: #111827;
+  border-color: rgba(176, 138, 34, 0.25);
+}
+:root[data-theme="light"] .mb-gcard--glass {
+  background: rgba(255, 255, 255, 0.75);
+}
+:root[data-theme="light"] .mb-empty__art {
+  background: radial-gradient(circle at 35% 25%, rgba(244, 214, 117, 0.4), rgba(244, 214, 117, 0.08) 70%);
+}
+:root[data-theme="light"] .dt-table thead th {
+  background: #f7f9fc;
+}
+
+/* ---------- Dashboard ---------- */
+:root[data-theme="light"] .dash .dash-pulse {
+  border-color: #e7ebf1;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 10px 24px -20px rgba(16, 24, 40, 0.35);
+}
+:root[data-theme="light"] .dash .dash-pulse > div {
+  border-left-color: #eef1f5;
+}
+:root[data-theme="light"] .dash .dash-pulse dt {
+  color: #6b7280;
+}
+:root[data-theme="light"] .dash .dash-pulse dd {
+  color: #111827;
+}
+:root[data-theme="light"] .dash .dash-pulse > div:first-child dd {
+  color: #8f6f17;
+}
+:root[data-theme="light"] .dash .dash-gauge__ring {
+  background:
+    radial-gradient(closest-side, #ffffff 76%, transparent 77% 100%),
+    conic-gradient(from -90deg, #b08a22 0, #e2c158 calc(var(--pct) * 1%), #eef1f5 0);
+  box-shadow: 0 10px 26px -14px rgba(176, 138, 34, 0.5);
+}
+:root[data-theme="light"] .dash .dash-status-list li {
+  background: #fafbfc;
+}
+:root[data-theme="light"] .dash .dash-feed__item:hover {
+  background: #fffaf0;
+}
+:root[data-theme="light"] .dash .dash-feed__avatar {
+  color: #7a5d12;
+}
+:root[data-theme="light"] .dash .dash-table td.num {
+  color: #7a5d12;
+}
+:root[data-theme="light"] .dash .dash-snap:first-child .dash-snap__value {
+  background: linear-gradient(135deg, #b08a22, #7a5d12);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Gold gradient text: deepen on white for readability */
+:root[data-theme="light"] .mb-gold-text,
+:root[data-theme="light"] .mb-stat--gold .mb-stat__value > span[aria-hidden="true"],
+:root[data-theme="light"] .sidebar-title span {
+  background: linear-gradient(135deg, #c9a12e 0%, #9c7a1d 55%, #7a5d12 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* ---------- Billing grand total & Reports summary on the white hero gradient ---------- */
+:root[data-theme="light"] .sum-grand-card {
+  color: #111827;
+  border-color: rgba(176, 138, 34, 0.45);
+  box-shadow: inset 0 1px 0 #ffffff, 0 14px 30px -18px rgba(176, 138, 34, 0.6);
+}
+:root[data-theme="light"] .sum-grand-label {
+  color: #8f6f17;
+}
+:root[data-theme="light"] .sum-grand-value {
+  background: linear-gradient(135deg, #b08a22 0%, #7a5d12 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: none;
+}
+:root[data-theme="light"] .rep .sum-label {
+  color: #8f6f17;
+}
+:root[data-theme="light"] .rep .sum-value {
+  color: #111827;
+}
+:root[data-theme="light"] .rep .sum-chip {
+  background: #fffaf0;
+  border-color: rgba(176, 138, 34, 0.3);
+  color: #7a5d12;
+}
+:root[data-theme="light"] .rep .sum-art {
+  color: rgba(176, 138, 34, 0.25);
+}
+
+/* ---------- Medical teal health accents ---------- */
+:root[data-theme="light"] .mb-chartcard__title::before {
+  background: var(--mb-med);
+  box-shadow: 0 0 0 3px var(--mb-med-bg);
+}
+:root[data-theme="light"] .sidebar-profile__role {
+  color: var(--mb-med);
+}
+
+/* ---------- Sign-in / sign-up (white medical) ---------- */
+:root[data-theme="light"] .auth-page {
+  --auth-text: #374151;
+  --auth-muted: #6b7280;
+  --auth-gold: #9c7a1d;
+  --auth-gold-2: #7a5d12;
+  background: #ffffff;
+}
+:root[data-theme="light"] .auth-page .auth-visual {
+  background:
+    radial-gradient(700px 460px at 110% -10%, rgba(244, 214, 117, 0.45), transparent 60%),
+    radial-gradient(600px 420px at -20% 110%, rgba(14, 159, 142, 0.1), transparent 60%),
+    linear-gradient(160deg, #fffdf6 0%, #f7f9fc 100%);
+  border-right: 1px solid #ece6d3;
+}
+:root[data-theme="light"] .auth-page .auth-visual::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M25 19h6v6h6v6h-6v6h-6v-6h-6v-6h6z' fill='%230e9f8e' fill-opacity='0.08'/%3E%3C/svg%3E");
+  background-size: 56px 56px;
+}
+:root[data-theme="light"] .auth-page .auth-brand__name,
+:root[data-theme="light"] .auth-page .auth-visual__title,
+:root[data-theme="light"] .auth-page .auth-feature strong {
+  color: #111827;
+}
+:root[data-theme="light"] .auth-page .auth-brand__name span {
+  color: #9c7a1d;
+}
+:root[data-theme="light"] .auth-page .auth-visual__title em {
+  background: linear-gradient(135deg, #c9a12e 0%, #9c7a1d 55%, #7a5d12 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+:root[data-theme="light"] .auth-page .auth-visual__subtitle {
+  color: #4b5563;
+}
+:root[data-theme="light"] .auth-page .auth-visual__art {
+  filter: drop-shadow(0 30px 40px rgba(16, 24, 40, 0.25)) drop-shadow(0 0 30px rgba(176, 138, 34, 0.15));
+}
+:root[data-theme="light"] .auth-page .auth-feature {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: #e7ebf1;
+  box-shadow: 0 6px 16px -14px rgba(16, 24, 40, 0.35);
+}
+:root[data-theme="light"] .auth-page .auth-feature:hover {
+  background: #fffaf0;
+  border-color: rgba(176, 138, 34, 0.4);
+}
+:root[data-theme="light"] .auth-page .auth-feature__icon {
+  background: linear-gradient(180deg, #ffffff, rgba(255, 255, 255, 0) 60%), rgba(212, 175, 55, 0.16);
+  box-shadow: inset 0 0 0 1px rgba(176, 138, 34, 0.3);
+}
+:root[data-theme="light"] .auth-page .auth-panel {
+  background: radial-gradient(600px 400px at 50% 0%, rgba(244, 214, 117, 0.22), transparent 70%), #ffffff;
+}
+:root[data-theme="light"] .auth-page--loading {
+  background: #ffffff;
+}
+@media (max-width: 860px) {
+  :root[data-theme="light"] .auth-page .auth-panel {
+    background: radial-gradient(500px 360px at 50% 0%, rgba(244, 214, 117, 0.3), transparent 70%), #ffffff;
+  }
+}

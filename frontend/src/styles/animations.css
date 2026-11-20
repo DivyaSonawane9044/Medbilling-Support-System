@@ -1,0 +1,76 @@
+/* Shared motion utilities. Only transform/opacity are animated (GPU-friendly).
+   Everything is disabled for users who prefer reduced motion. */
+
+@keyframes mb-fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes mb-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes mb-scale-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes mb-shimmer {
+  from { background-position: -400px 0; }
+  to { background-position: 400px 0; }
+}
+@keyframes mb-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes mb-pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(248, 113, 113, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(248, 113, 113, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(248, 113, 113, 0); }
+}
+/* Slow float for decorative 3D elements */
+@keyframes mb-float {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(var(--mb-float-rot, 0deg)); }
+  50% { transform: translate3d(0, -10px, 0) rotate(calc(var(--mb-float-rot, 0deg) + 4deg)); }
+}
+/* One-shot light sweep across gold surfaces */
+@keyframes mb-shine {
+  from { transform: translateX(-120%) skewX(-18deg); }
+  to { transform: translateX(220%) skewX(-18deg); }
+}
+
+.mb-animate-in { animation: mb-fade-up var(--mb-dur-slow) var(--mb-ease) backwards; }
+.mb-fade-in { animation: mb-fade-in var(--mb-dur) var(--mb-ease) backwards; }
+
+/* Stagger children of a grid/list: up to 12 items */
+.mb-stagger > * { animation: mb-fade-up var(--mb-dur-slow) var(--mb-ease) backwards; }
+.mb-stagger > *:nth-child(2) { animation-delay: 50ms; }
+.mb-stagger > *:nth-child(3) { animation-delay: 100ms; }
+.mb-stagger > *:nth-child(4) { animation-delay: 150ms; }
+.mb-stagger > *:nth-child(5) { animation-delay: 200ms; }
+.mb-stagger > *:nth-child(6) { animation-delay: 250ms; }
+.mb-stagger > *:nth-child(7) { animation-delay: 300ms; }
+.mb-stagger > *:nth-child(8) { animation-delay: 350ms; }
+.mb-stagger > *:nth-child(n + 9) { animation-delay: 400ms; }
+
+/* Hover lift for interactive cards */
+.mb-lift {
+  transition: transform var(--mb-dur) var(--mb-ease), box-shadow var(--mb-dur) var(--mb-ease), border-color var(--mb-dur) var(--mb-ease);
+}
+.mb-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--mb-shadow-md), 0 0 0 1px rgba(212, 175, 55, 0.2);
+  border-color: var(--mb-border-strong);
+}
+
+/* Critical alert dot (finite: 3 pulses, not an endless loop) */
+.mb-pulse { animation: mb-pulse-ring 1.6s ease-out 3; }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

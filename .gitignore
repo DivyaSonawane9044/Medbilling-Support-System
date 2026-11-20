@@ -1,35 +1,27 @@
 # Dependencies
 node_modules/
-frontend/node_modules/
-pharma-backend/target/
-pharma-backend/.mvn/
-pharma-backend/mvnw
-pharma-backend/mvnw.cmd
-
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
 # Build outputs
 frontend/dist/
 frontend/build/
-pharma-backend/target/
+backend/target/
+target/
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
+# Local data (H2 file database used by the default dev profile)
+backend/data/
+data/
 
-# OS
-.DS_Store
-Thumbs.db
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
 
-# Logs
+# Test artifacts
+coverage/
+frontend/test-results/
+frontend/playwright-report/
+
+# Logs and JVM crash dumps
 *.log
 hs_err_pid*.log
 replay_pid*.log
@@ -37,14 +29,16 @@ replay_pid*.log
 # Temporary files
 *.tmp
 *.temp
-medicines.json
 
-# Testing
-coverage/
-.nyc_output/
-
-# Misc
-.cache/
-.parcel-cache/
-.next/
-out/
+# IDE / OS
+.idea/
+*.iml
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+frontend/e2e-artifacts/
+frontend/playwright-report/
+frontend/test-results/
+frontend/test-results*/
+frontend/playwright-report*/

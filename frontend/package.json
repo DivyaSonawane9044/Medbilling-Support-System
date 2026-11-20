@@ -7,25 +7,29 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.61.4",
     "axios": "^1.7.2",
+    "framer-motion": "^11.11.17",
     "lucide-react": "^0.577.0",
-    "quagga": "^0.12.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-icons": "^5.2.0",
     "react-router-dom": "^6.23.1",
     "recharts": "^3.8.0"
   },
   "optionalDependencies": {
     "html2canvas": "^1.4.1",
-    "jspdf": "^2.5.1"
+    "jspdf": "^4.2.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.49.1",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.1.0",
     "@vitejs/plugin-react": "^4.3.1",
+    "jsdom": "^25.0.1",
     "vite": "^5.3.1",
     "vitest": "^1.2.1"
   }

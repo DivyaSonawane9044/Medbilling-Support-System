@@ -1,16 +1,81 @@
 .app-shell {
+  position: relative;
   display: flex;
   min-height: 100vh;
-  background-color: var(--color-bg, #f8fafc);
+  background: var(--mb-bg);
+  isolation: isolate;
+}
+
+/* Soft ambient lighting: two warm gold pools and a cool fill, fixed behind the content (no animation, no repaint cost) */
+.app-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 520px at 88% -8%, rgba(212, 175, 55, 0.11), transparent 62%),
+    radial-gradient(700px 480px at 18% 108%, rgba(244, 214, 117, 0.05), transparent 60%),
+    radial-gradient(800px 600px at 45% 40%, rgba(90, 110, 160, 0.04), transparent 70%);
+}
+
+/* Fine noise-free grid texture for depth */
+.app-shell::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 60% at 60% 0%, #000 0%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 60% 0%, #000 0%, transparent 75%);
 }
 
 .app-shell-main {
   flex: 1;
+  min-width: 0; /* lets wide tables scroll inside their own wrapper instead of the page */
   display: flex;
   flex-direction: column;
 }
 
 .app-shell-content {
-  padding: 16px 24px 32px;
+  flex: 1;
+  padding: 26px clamp(16px, 2.4vw, 36px) 48px;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
+.app-page {
+  min-width: 0;
+  max-width: 1480px;
+  margin: 0 auto;
+}
+
+.app-shell-overlay {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .app-shell-content {
+    padding: 16px 14px 28px;
+  }
+
+  .app-shell-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.62);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 900;
+    animation: mb-fade-in var(--mb-dur) var(--mb-ease) both;
+  }
+
+  .app-shell.sidebar-open {
+    overflow: hidden;
+  }
+}

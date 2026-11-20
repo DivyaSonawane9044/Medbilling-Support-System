@@ -1,79 +1,160 @@
+@import "./insights/insights.css";
+
 .an {
-  max-width: 1280px;
-  margin: 0 auto;
+  min-width: 0;
 }
 
-.an-head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 14px;
-  margin: 8px 0 14px;
-  flex-wrap: wrap;
+.an .an-kpis {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--mb-s4);
+}
+.an .an-kpi {
+  min-width: 0;
 }
 
-.an-title {
-  margin: 0;
-  font-size: 22px;
-  font-weight: 800;
-}
-
-.an-subtitle {
-  margin: 4px 0 0;
-  color: var(--color-text-secondary);
-  font-size: 13px;
-}
-
-.an-kpis {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.an-kpi {
-  padding: 14px;
-  min-width: 320px;
-}
-
-.an-kpi-label {
-  color: var(--color-text-secondary);
-  font-size: 12px;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-}
-
-.an-kpi-value {
-  margin-top: 6px;
-  font-size: 20px;
-  font-weight: 900;
-}
-
-.an-kpi-sub {
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.an-grid {
+.an .an-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  gap: var(--mb-s4);
+  min-width: 0;
+}
+.an .an-grid--wide {
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+}
+.an .an-grid > * {
+  min-width: 0;
 }
 
-.an-chart {
-  padding: 14px;
+/* Donut */
+.an .an-donut {
+  display: grid;
+  gap: var(--mb-s3);
+  align-items: center;
+}
+.an .an-donut__chart {
+  position: relative;
+}
+.an .an-donut__center {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  pointer-events: none;
+}
+.an .an-donut__center strong {
+  font-family: var(--mb-font-display);
+  font-size: var(--mb-fs-xl);
+  color: var(--mb-text);
+}
+.an .an-donut__center span {
+  font-size: var(--mb-fs-xs);
+  color: var(--mb-text-2);
 }
 
-.chart-wrap {
-  margin-top: 10px;
+/* Stock value comparison */
+.an .an-sv-row {
+  display: grid;
+  gap: 6px;
+}
+.an .an-sv-label {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--mb-s2);
+  font-size: var(--mb-fs-sm);
+  color: var(--mb-text-2);
+}
+.an .an-sv-label strong {
+  color: var(--mb-text);
+  font-variant-numeric: tabular-nums;
+}
+.an .an-sv-foot {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--mb-s3);
+}
+.an .an-sv-foot > div {
+  display: grid;
+  gap: 2px;
+  padding: var(--mb-s3);
+  border-radius: var(--mb-r-md);
+  background: var(--mb-surface-muted);
+  border: 1px solid var(--mb-border);
+  min-width: 0;
+}
+.an .an-sv-foot span {
+  font-size: var(--mb-fs-xs);
+  color: var(--mb-text-2);
+}
+.an .an-sv-foot strong {
+  font-family: var(--mb-font-display);
+  font-size: var(--mb-fs-lg);
+  color: var(--mb-text);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
 }
 
-@media (max-width: 1100px) {
-  .an-grid {
-    grid-template-columns: 1fr;
+/* Tables */
+.an .an-table {
+  min-width: 0;
+  overflow-x: auto;
+}
+.an .an-cust {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mb-s2);
+}
+.an .an-cust__name {
+  font-weight: 600;
+}
+.an .an-share {
+  display: grid;
+  grid-template-columns: minmax(48px, 1fr) auto;
+  align-items: center;
+  gap: var(--mb-s2);
+  min-width: 96px;
+}
+.an .an-share small {
+  color: var(--mb-text-2);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (min-width: 700px) {
+  .an .an-donut {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 }
 
+@media (max-width: 1280px) {
+  .an .an-kpis {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1100px) {
+  .an .an-grid,
+  .an .an-grid--wide {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .an .an-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .an .an-kpis {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .an .an-sv-foot {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* five tiles share one row on laptops: keep long rupee values on one line */
+.an .an-kpi .mb-stat__value {
+  font-size: clamp(1.1rem, 0.6rem + 0.75vw, 1.45rem);
+}

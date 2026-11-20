@@ -1,0 +1,25 @@
+/* Dosage-form chip (shared with the medicine catalogue): a small glossy 3D product tile, tinted per form */
+.dose-chip {
+  --tone: var(--mb-gold);
+  position: relative;
+  flex: 0 0 auto;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 30%;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0) 55%),
+    radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--tone) 40%, transparent), transparent 72%),
+    #23252c;
+  color: var(--tone);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), inset 0 -2px 0 rgba(0, 0, 0, 0.35),
+    inset 0 0 0 1px color-mix(in srgb, var(--tone) 30%, transparent), 0 8px 16px -10px color-mix(in srgb, var(--tone) 75%, transparent);
+}
+.dose-chip svg {
+  filter: drop-shadow(0 2px 4px color-mix(in srgb, var(--tone) 55%, transparent));
+}
+.dose-chip--teal { --tone: var(--mb-gold); }
+.dose-chip--purple { --tone: var(--mb-purple); }
+.dose-chip--info { --tone: var(--mb-info); }
+.dose-chip--coral { --tone: #fb923c; }
+.dose-chip--warning { --tone: var(--mb-warning); }
+.dose-chip--navy { --tone: var(--mb-gold-2); }

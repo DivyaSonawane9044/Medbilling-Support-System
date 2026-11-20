@@ -4,6 +4,7 @@
 
 .dt-head {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
@@ -24,7 +25,9 @@
 .dt-search {
   padding: 10px 12px;
   border-radius: 9999px;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--mb-field-border);
+  background: var(--mb-field);
+  color: var(--mb-text);
   font-size: 14px;
   min-width: 240px;
   outline: none;
@@ -32,7 +35,7 @@
 
 .dt-search:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
+  box-shadow: var(--mb-ring);
 }
 
 .dt-table-wrap {
@@ -52,7 +55,7 @@
 .dt-table thead th {
   position: sticky;
   top: 0;
-  background: #f8fafc;
+  background: #15171c;
   color: var(--color-text-secondary);
   font-size: 12px;
   font-weight: 800;
@@ -61,6 +64,7 @@
   border-bottom: 1px solid var(--color-border);
   padding: 10px 12px;
   text-align: left;
+  white-space: nowrap;
   user-select: none;
 }
 
@@ -69,14 +73,15 @@
 }
 
 .dt-table tbody td {
+  white-space: nowrap;
   padding: 10px 12px;
   border-bottom: 1px solid var(--color-border);
   font-size: 13px;
-  background: white;
+  background: transparent;
 }
 
 .dt-table tbody tr:hover td {
-  background: rgba(59, 130, 246, 0.04);
+  background: rgba(212, 175, 55, 0.05);
 }
 
 .dt-table tbody tr:last-child td {
@@ -96,7 +101,7 @@
 
 .th-sort {
   margin-left: 8px;
-  color: #94a3b8;
+  color: var(--mb-gold);
   font-size: 10px;
 }
 
@@ -144,12 +149,41 @@
   border: 1px solid var(--color-border);
   border-radius: 9999px;
   padding: 8px 10px;
-  background: white;
+  background: var(--mb-surface-raised);
+  color: var(--mb-text);
+}
+
+.dt-head > div:first-child {
+  min-width: 0;
+  flex: 1 1 200px;
+}
+
+.dt {
+  min-width: 0;
+}
+
+.dt-table thead th.sortable:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
 }
 
 @media (max-width: 600px) {
+  .dt-actions {
+    width: 100%;
+  }
+
   .dt-search {
-    min-width: 100%;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .dt-foot,
+  .dt-pager {
+    gap: 6px;
+  }
+
+  .dt-pager .btn {
+    padding: 8px 10px;
   }
 }
 

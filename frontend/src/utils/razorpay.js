@@ -8,69 +8,66 @@ export function loadRazorpayScript() {
   if (scriptPromise) return scriptPromise;
 
   scriptPromise = new Promise((resolve, reject) => {
-    const existing = document.querySelector(`script[src="${SCRIPT_URL}"]`);
-    if (existing) {
-      existing.addEventListener("load", () => resolve(window.Razorpay));
-      existing.addEventListener("error", () => reject(new Error("Failed to load Razorpay")));
-      return;
-    }
     const script = document.createElement("script");
     script.src = SCRIPT_URL;
     script.async = true;
     script.onload = () => resolve(window.Razorpay);
-    script.onerror = () => reject(new Error("Failed to load Razorpay checkout"));
+    script.onerror = () => {
+      scriptPromise = null;
+      reject(new Error("Failed to load Razorpay checkout. Check the internet connection."));
+    };
     document.body.appendChild(script);
   });
 
   return scriptPromise;
 }
 
-/**
- * Opens Razorpay checkout or resolves immediately in mock/demo mode.
- */
-export async function openRazorpayCheckout({ order, invoiceId, customerName, onSuccess }) {
-  if (order.mock) {
-    const mockPaymentId = `pay_mock_${Date.now()}`;
-    await onSuccess({
-      razorpay_order_id: order.orderId,
-      razorpay_payment_id: mockPaymentId,
-      razorpay_signature: "mock_signature_dev",
-      invoice_id: String(invoiceId),
-    });
-    return;
+export class CheckoutDismissed extends Error {
+  constructor() {
+    super("Payment cancelled");
+    this.name = "CheckoutDismissed";
   }
+}
 
+/**
+ * Opens the real Razorpay checkout for a server-created order. The payment only
+ * counts once the backend has verified the signature (onSuccess must call it).
+ * onFailure is called for failed or dismissed checkouts so the server can record it.
+ * There is deliberately no mock/demo path.
+ */
+export async function openRazorpayCheckout({ order, shopName, description, customerName, onSuccess, onFailure }) {
   const Razorpay = await loadRazorpayScript();
 
   return new Promise((resolve, reject) => {
-    const options = {
+    let settled = false;
+    const fail = (err, reason) => {
+      if (settled) return;
+      settled = true;
+      Promise.resolve(onFailure?.(reason)).finally(() => reject(err));
+    };
+
+    const rzp = new Razorpay({
       key: order.keyId,
       amount: order.amount,
       currency: order.currency || "INR",
-      name: "Medbilling Pharmacy",
-      description: `Invoice payment #${invoiceId}`,
+      name: shopName || "Pharmacy",
+      description,
       order_id: order.orderId,
-      prefill: { name: customerName || "Customer" },
-      theme: { color: "#0d9488" },
+      prefill: { name: customerName || "" },
+      theme: { color: "#0b8276" }, // --mb-teal-700
       handler: async (response) => {
+        settled = true;
         try {
-          await onSuccess({
-            ...response,
-            invoice_id: String(invoiceId),
-          });
-          resolve(response);
+          resolve(await onSuccess(response));
         } catch (err) {
           reject(err);
         }
       },
-      modal: {
-        ondismiss: () => reject(new Error("Payment cancelled")),
-      },
-    };
-
-    const rzp = new Razorpay(options);
+      modal: { ondismiss: () => fail(new CheckoutDismissed(), "checkout dismissed") },
+    });
     rzp.on("payment.failed", (resp) => {
-      reject(new Error(resp.error?.description || "Payment failed"));
+      const reason = resp.error?.description || "Payment failed";
+      fail(new Error(reason), reason);
     });
     rzp.open();
   });

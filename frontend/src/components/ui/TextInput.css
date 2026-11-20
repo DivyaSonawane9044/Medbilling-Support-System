@@ -2,14 +2,15 @@
   width: 100%;
   padding: 12px 14px;
   border-radius: 12px;
-  border: 1px solid var(--color-border);
-  background: white;
+  border: 1px solid var(--mb-field-border);
+  background: var(--mb-field);
+  color: var(--mb-text);
   font-size: 14px;
   outline: none;
 }
 
 .ti:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
+  box-shadow: var(--mb-ring);
 }
 

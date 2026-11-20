@@ -1,6 +1,6 @@
 html,
 body {
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: var(--mb-font);
   color: var(--color-text-primary);
 }
 
@@ -8,6 +8,6 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: Poppins, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: var(--mb-font-display);
+  letter-spacing: -0.01em;
 }
-

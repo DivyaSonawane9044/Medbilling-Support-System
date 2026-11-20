@@ -1,46 +1,327 @@
+/* Global base + shared component styles for the whole app (uses styles/design-tokens.css). */
+@import "../styles/animations.css";
+
 * {
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  background: var(--mb-bg);
+}
+
 body {
   margin: 0;
-  background: var(--color-bg);
+  background: var(--mb-bg);
+  color: var(--mb-text);
+  font-family: var(--mb-font);
+  font-size: var(--mb-fs-md);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
   color: inherit;
 }
 
+::selection {
+  background: rgba(212, 175, 55, 0.32);
+  color: #fff;
+}
+
+/* Thin dark scrollbars with a gold thumb on hover */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.14) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.5);
+  background-clip: padding-box;
+}
+
+/* ---------- Cards ---------- */
 .card {
-  background: var(--color-card-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
+  position: relative;
+  background: var(--mb-grad-card), var(--mb-surface);
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-r-lg);
+  box-shadow: var(--mb-shadow-sm);
+  transition: box-shadow var(--mb-dur) var(--mb-ease), border-color var(--mb-dur) var(--mb-ease), transform var(--mb-dur) var(--mb-ease);
 }
 
 .card:hover {
-  box-shadow: var(--shadow-md);
+  border-color: rgba(212, 175, 55, 0.18);
+  box-shadow: var(--mb-shadow-md);
 }
 
+.card-head h3 {
+  margin: 0;
+  font-size: var(--mb-fs-lg);
+  font-weight: 700;
+  color: var(--mb-text);
+}
+
+.card-head p {
+  margin: 4px 0 0;
+  color: var(--mb-text-2);
+  font-size: var(--mb-fs-xs);
+}
+
+.chart-wrap {
+  margin-top: 10px;
+  min-width: 0;
+}
+
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Buttons ---------- */
 .btn {
-  border: 1px solid var(--color-border);
-  background: var(--color-card-bg);
-  color: var(--color-text-primary);
-  border-radius: 9999px;
-  padding: 10px 14px;
-  font-size: 14px;
-  font-weight: 600;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 9px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--mb-r-md);
+  background: var(--mb-surface-raised);
+  color: var(--mb-text);
+  font: 600 var(--mb-fs-md) / 1.2 var(--mb-font);
   cursor: pointer;
+  white-space: nowrap;
+  transition: transform var(--mb-dur-fast) var(--mb-ease), box-shadow var(--mb-dur) var(--mb-ease),
+    background-color var(--mb-dur) var(--mb-ease), border-color var(--mb-dur) var(--mb-ease), color var(--mb-dur) var(--mb-ease);
+}
+
+.btn svg {
+  width: var(--mb-icon-sm);
+  height: var(--mb-icon-sm);
+  flex: 0 0 auto;
+}
+
+.btn:hover:not(:disabled) {
+  border-color: rgba(212, 175, 55, 0.45);
+  color: var(--mb-gold-2);
+  box-shadow: 0 8px 20px -12px rgba(212, 175, 55, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(0) scale(0.97);
+  transition-duration: 60ms;
 }
 
 .btn-primary {
-  border-color: var(--color-primary);
-  background: var(--color-primary);
-  color: white;
+  border-color: transparent;
+  background: var(--mb-gold);
+  background-image: var(--mb-grad-gold);
+  color: var(--mb-on-gold);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 10px 24px -12px rgba(212, 175, 55, 0.75);
 }
 
+.btn-primary:hover:not(:disabled) {
+  border-color: transparent;
+  color: var(--mb-on-gold);
+  background-image: linear-gradient(135deg, #f8e08e 0%, #dcb941 48%, #c29d2f 100%);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset, 0 16px 32px -14px rgba(212, 175, 55, 0.9);
+}
+
+/* "Navy" buttons are the dark secondary action in the black theme */
+.btn-navy {
+  border-color: rgba(212, 175, 55, 0.35);
+  background: var(--mb-charcoal);
+  color: var(--mb-gold-2);
+}
+
+.btn-navy:hover:not(:disabled) {
+  border-color: var(--mb-gold);
+  background: #17191f;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  background: transparent;
+  color: var(--mb-text-2);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  border-color: transparent;
+  background: rgba(212, 175, 55, 0.08);
+  color: var(--mb-gold-2);
+  box-shadow: none;
+}
+
+.btn-danger {
+  border-color: rgba(248, 113, 113, 0.25);
+  background: var(--mb-danger-bg);
+  color: var(--mb-danger);
+}
+
+.btn-danger:hover:not(:disabled) {
+  border-color: transparent;
+  background: #dc4a4a;
+  color: #fff;
+  box-shadow: 0 10px 22px -12px rgba(248, 113, 113, 0.7);
+}
+
+.btn-sm {
+  min-height: 32px;
+  padding: 6px 12px;
+  font-size: var(--mb-fs-sm);
+  border-radius: var(--mb-r-sm);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn.is-loading {
+  pointer-events: none;
+}
+
+.btn .btn-spinner {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  animation: mb-spin 0.7s linear infinite;
+}
+
+/* ---------- Focus (keyboard users always see where they are) ---------- */
 .btn:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
 }
 
+.btn:focus-visible,
+button:focus-visible,
+a:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--mb-gold);
+  outline-offset: 2px;
+  box-shadow: var(--mb-ring);
+}
+
+/* ---------- Form controls (shared dark look for native inputs used across pages) ---------- */
+input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="range"]),
+select,
+textarea {
+  font-family: inherit;
+  color: var(--mb-text);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--mb-text-3);
+  opacity: 1;
+}
+
+select option,
+select optgroup {
+  background: var(--mb-graphite);
+  color: var(--mb-text);
+}
+
+/* Native date / time picker icons follow the dark colour-scheme; tint them gold */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="month"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(76%) sepia(46%) saturate(560%) hue-rotate(5deg) brightness(95%);
+  cursor: pointer;
+}
+
+/* Browser autofill keeps the dark field instead of a yellow/white one */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--mb-text);
+  -webkit-box-shadow: 0 0 0 1000px var(--mb-surface-raised) inset;
+  caret-color: var(--mb-text);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--mb-gold);
+}
+
+/* ---------- Page scaffolding helpers ---------- */
+.mb-page {
+  max-width: 1480px;
+  margin: 0 auto;
+  display: grid;
+  gap: var(--mb-s6);
+  min-width: 0;
+}
+
+.mb-grid {
+  display: grid;
+  gap: var(--mb-s4);
+  min-width: 0;
+}
+
+.mb-grid-stats {
+  display: grid;
+  gap: var(--mb-s4);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+}
+
+.mb-grid-2 {
+  display: grid;
+  gap: var(--mb-s4);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+}
+
+.mb-grid-3 {
+  display: grid;
+  gap: var(--mb-s4);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+.mb-muted {
+  color: var(--mb-text-2);
+}
+
+.mb-gold-text {
+  background: var(--mb-grad-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.mb-scroll-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+.mb-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

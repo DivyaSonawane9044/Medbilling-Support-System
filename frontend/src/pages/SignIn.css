@@ -1,638 +1,316 @@
-/* SignIn Page Styles - Perfect Professional Medical Theme */
-.signin-container {
+/* Sign-in / sign-up pages (AuthLayout), Black + Gold theme. Everything is scoped under .auth-page so
+   these lazily-loaded styles never leak into the rest of the app.
+   No fixed heights and no overflow clipping on the page: content grows and scrolls. */
+
+.auth-page {
+  --auth-text: #c4c4cc;
+  --auth-muted: #8f8f98;
+  --auth-gold: #d4af37;
+  --auth-gold-2: #f4d675;
+  --auth-border: rgba(255, 255, 255, 0.08);
+
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  background: #08090d;
+  color: var(--auth-text);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* ---------- Brand mark ---------- */
+.auth-page .auth-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.auth-page .auth-brand__mark {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #f4d675 0%, #d4af37 48%, #b8932a 100%);
+  color: #14110a;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.45) inset, 0 -2px 0 rgba(0, 0, 0, 0.2) inset, 0 12px 26px -10px rgba(212, 175, 55, 0.8);
+  transform: perspective(200px) rotateX(8deg);
+}
+.auth-page .auth-brand__name {
+  color: #fff;
+  font-family: "Plus Jakarta Sans", Poppins, Inter, sans-serif;
+  font-weight: 800;
+  font-size: 19px;
+  line-height: 1.15;
+}
+.auth-page .auth-brand__name span {
+  display: block;
+  color: rgba(244, 214, 117, 0.7);
+  font-family: Inter, sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+/* The compact mark sits above the card and is only shown when the brand panel is hidden */
+.auth-page .auth-brand--compact {
+  display: none;
+}
+
+/* ---------- Left: brand panel ---------- */
+.auth-page .auth-visual {
+  position: relative;
   display: flex;
-  height: 100vh;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(32px, 5vw, 72px);
+  background:
+    radial-gradient(700px 460px at 110% -10%, rgba(212, 175, 55, 0.24), transparent 60%),
+    radial-gradient(600px 420px at -20% 110%, rgba(244, 214, 117, 0.1), transparent 60%),
+    linear-gradient(160deg, #15171c 0%, #0e0f13 60%, #08090d 100%);
+  border-right: 1px solid rgba(212, 175, 55, 0.16);
   overflow: hidden;
 }
-
-/* Loading State */
-.signin-loading {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background: linear-gradient(135deg, #e6f7ff 0%, #e8f5e9 100%);
-  color: #333;
-}
-
-.signin-loading .loading-spinner {
-  width: 48px;
-  height: 48px;
-  border: 4px solid #e3f2fd;
-  border-top: 4px solid #1976d2;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-bottom: 1rem;
-}
-
-.signin-loading p {
-  font-size: 1.1rem;
-  color: #666;
-  margin: 0;
-}
-
-/* Left Side - Medical Branding */
-.signin-left {
-  flex: 1;
-  background: linear-gradient(135deg, #e6f7ff 0%, #e8f5e9 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 3rem 2rem;
-  position: relative;
-}
-
-.signin-left::before {
-  content: '';
+/* Subtle grid texture */
+.auth-page .auth-visual::before {
+  content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(25,118,210,0.05)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-  opacity: 0.3;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000, transparent 80%);
+  pointer-events: none;
 }
-
-.medical-branding {
-  max-width: 500px;
-  text-align: center;
+.auth-page .auth-visual__inner {
   position: relative;
-  z-index: 2;
+  width: 100%;
+  max-width: 520px;
+}
+.auth-page .auth-visual__title {
+  margin: 36px 0 12px;
+  color: #fff;
+  font-family: "Plus Jakarta Sans", Poppins, Inter, sans-serif;
+  font-size: clamp(1.9rem, 2.6vw, 2.7rem);
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.auth-page .auth-visual__title em {
+  font-style: normal;
+  background: linear-gradient(135deg, #f4d675 0%, #d4af37 55%, #b8932a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.auth-page .auth-visual__subtitle {
+  margin: 0 0 28px;
+  max-width: 460px;
+  color: #a1a1aa;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+.auth-page .auth-visual__art {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 28px;
+  filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 40px rgba(212, 175, 55, 0.12));
+  transform: perspective(1200px) rotateX(8deg) rotateY(-6deg);
 }
 
-.brand-header {
-  margin-bottom: 3rem;
-}
-
-.brand-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.brand-icon {
-  width: 48px;
-  height: 48px;
-  color: #1976d2;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-.brand-icon.activity {
-  color: #4caf50;
-  animation-delay: 1s;
-}
-
-.brand-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin-bottom: 0.5rem;
-  line-height: 1.2;
-}
-
-.brand-subtitle {
-  font-size: 1.1rem;
-  color: #666;
-  font-weight: 500;
+.auth-page .auth-features {
+  list-style: none;
   margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
 }
-
-.medical-features {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  margin-bottom: 3rem;
-}
-
-.feature-card {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 16px;
-  padding: 1.5rem;
+.auth-page .auth-feature {
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(6px);
+  transition: background-color 150ms ease, transform 150ms ease, border-color 150ms ease;
 }
-
-.feature-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.1), transparent);
-  transition: left 0.5s ease;
+.auth-page .auth-feature:hover {
+  background: rgba(212, 175, 55, 0.06);
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: translateY(-1px);
 }
-
-.feature-card:hover::before {
-  left: 100%;
-}
-
-.feature-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  background: rgba(255, 255, 255, 0.95);
-}
-
-.feature-icon {
+.auth-page .auth-feature__icon {
+  flex: 0 0 40px;
+  display: grid;
+  place-items: center;
   width: 40px;
   height: 40px;
-  color: #4caf50;
-  flex-shrink: 0;
-  background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
-  padding: 8px;
   border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0) 60%), rgba(212, 175, 55, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.25);
+  color: var(--auth-gold);
+}
+.auth-page .auth-feature strong {
+  display: block;
+  color: #fff;
+  font-size: 0.98rem;
+  font-weight: 650;
+}
+.auth-page .auth-feature small {
+  display: block;
+  margin-top: 2px;
+  color: var(--auth-muted);
+  font-size: 0.875rem;
+  line-height: 1.45;
 }
 
-.feature-content h3 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #1a1a1a;
-  margin: 0 0 0.5rem 0;
-}
-
-.feature-content p {
-  font-size: 0.9rem;
-  color: #666;
-  margin: 0;
-  line-height: 1.5;
-}
-
-.brand-footer {
-  margin-top: auto;
-  padding-top: 2rem;
-}
-
-.brand-footer p {
-  font-size: 0.9rem;
-  color: #666;
-  margin: 0 0 1rem 0;
-  font-style: italic;
-}
-
-.trust-badges {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.badge {
-  background: linear-gradient(135deg, #4caf50, #66bb6a);
-  color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.2);
-}
-
-/* Right Side - Sign In Form */
-.signin-right {
-  flex: 1;
-  background: #ffffff;
+/* ---------- Right: Clerk card ---------- */
+.auth-page .auth-panel {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  position: relative;
+  padding: clamp(24px, 5vw, 64px) clamp(16px, 4vw, 48px);
+  background: radial-gradient(600px 400px at 50% 0%, rgba(212, 175, 55, 0.08), transparent 70%), #08090d;
 }
-
-.signin-right::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, rgba(76, 175, 80, 0.05), transparent);
-  border-radius: 50%;
-  transform: translate(50%, -50%);
-}
-
-.signin-form-container {
+.auth-page .auth-panel__inner {
   width: 100%;
   max-width: 420px;
-  position: relative;
-  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 18px;
 }
-
-.form-header {
+.auth-page .auth-panel__footer {
+  color: var(--auth-muted);
+  font-size: 0.875rem;
+  line-height: 1.55;
   text-align: center;
-  margin-bottom: 2.5rem;
 }
-
-.form-logo {
+.auth-page .auth-panel__footer p {
+  margin: 0;
+}
+.auth-page .auth-panel__footer strong {
+  color: var(--auth-gold-2);
+  font-weight: 600;
+}
+.auth-page .auth-secure {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.5rem;
-}
-
-.form-icon {
-  width: 56px;
-  height: 56px;
-  color: #e91e63;
-  background: linear-gradient(135deg, #fce4ec, #f8bbd9);
-  padding: 12px;
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.2);
-}
-
-.form-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin-bottom: 0.5rem;
-}
-
-.form-subtitle {
-  font-size: 1rem;
-  color: #666;
+  gap: 8px;
   margin: 0;
-  line-height: 1.5;
+  color: var(--auth-muted);
+  font-size: 0.8125rem;
+}
+.auth-page .auth-secure svg {
+  color: var(--auth-gold);
+  flex: 0 0 auto;
 }
 
-/* Error Message */
-.error-message {
+/* Clerk focus ring in brand colours (keyboard users) */
+.auth-page .cl-formFieldInput:focus-visible,
+.auth-page .cl-formButtonPrimary:focus-visible,
+.auth-page .cl-socialButtonsBlockButton:focus-visible {
+  outline: 3px solid rgba(212, 175, 55, 0.4);
+  outline-offset: 2px;
+}
+
+/* ---------- Loading ---------- */
+.auth-page--loading {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
-  background: linear-gradient(135deg, #ffebee, #ffcdd2);
-  border: 1px solid #f8bbd9;
-  border-radius: 12px;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-  animation: slideIn 0.3s ease;
-}
-
-.error-icon {
-  width: 20px;
-  height: 20px;
-  color: #e91e63;
-  flex-shrink: 0;
-}
-
-.error-message span {
-  color: #c62828;
-  font-weight: 500;
-  font-size: 0.9rem;
-}
-
-.clerk-form-wrapper {
-  margin-bottom: 2rem;
-  position: relative;
-}
-
-/* Clerk Component Customization */
-.clerk-root-box {
-  width: 100%;
-}
-
-.clerk-card {
-  border-radius: 16px !important;
-  border: 1px solid #e0e0e0 !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
-  background: #ffffff !important;
-  padding: 0 !important;
-  transition: all 0.3s ease !important;
-}
-
-.clerk-card:hover {
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
-}
-
-.clerk-header {
-  display: none !important;
-}
-
-.clerk-form-label {
-  color: #333 !important;
-  font-weight: 600 !important;
-  font-size: 0.9rem !important;
-  margin-bottom: 0.5rem !important;
-}
-
-.clerk-form-input {
-  border: 2px solid #e0e0e0 !important;
-  border-radius: 12px !important;
-  padding: 0.875rem 1rem !important;
-  font-size: 1rem !important;
-  transition: all 0.3s ease !important;
-  background: #f8f9fa !important;
-  height: auto !important;
-}
-
-.clerk-form-input:focus {
-  border-color: #4caf50 !important;
-  background: #ffffff !important;
-  box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.1) !important;
-  transform: translateY(-1px) !important;
-}
-
-.clerk-form-button {
-  background: linear-gradient(135deg, #4caf50, #66bb6a) !important;
-  border: none !important;
-  border-radius: 12px !important;
-  padding: 0.875rem 1.5rem !important;
-  font-size: 1rem !important;
-  font-weight: 600 !important;
-  transition: all 0.3s ease !important;
-  width: 100% !important;
-  height: auto !important;
-  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2) !important;
-  position: relative !important;
-  overflow: hidden !important;
-}
-
-.clerk-form-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s ease;
-}
-
-.clerk-form-button:hover::before {
-  left: 100%;
-}
-
-.clerk-form-button:hover {
-  background: linear-gradient(135deg, #388e3c, #4caf50) !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3) !important;
-}
-
-.clerk-form-button:active {
-  transform: translateY(0) !important;
-}
-
-.clerk-social-buttons {
-  margin-bottom: 1.5rem !important;
-}
-
-.clerk-social-button {
-  border: 2px solid #e0e0e0 !important;
-  border-radius: 12px !important;
-  padding: 0.75rem !important;
-  transition: all 0.3s ease !important;
-  background: #ffffff !important;
-  font-weight: 500 !important;
-  position: relative !important;
-  overflow: hidden !important;
-}
-
-.clerk-social-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.05), transparent);
-  transition: left 0.5s ease;
-}
-
-.clerk-social-button:hover::before {
-  left: 100%;
-}
-
-.clerk-social-button:hover {
-  border-color: #4caf50 !important;
-  background: #f8f9fa !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-}
-
-.clerk-footer-action {
-  text-align: center !important;
-  margin-top: 1.5rem !important;
-}
-
-.clerk-footer-link {
-  color: #4caf50 !important;
-  font-weight: 600 !important;
-  text-decoration: none !important;
-}
-
-.clerk-footer-link:hover {
-  color: #388e3c !important;
-  text-decoration: underline !important;
-}
-
-.form-footer {
-  text-align: center;
-  padding-top: 2rem;
-  border-top: 1px solid #e0e0e0;
-}
-
-.footer-text {
-  color: #666;
-  font-size: 0.9rem;
-  margin: 0 0 1rem 0;
-}
-
-.footer-link {
-  color: #4caf50;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer-link:hover {
-  color: #388e3c;
-  text-decoration: underline;
-}
-
-.help-links {
-  display: flex;
   justify-content: center;
-  gap: 2rem;
-  margin-top: 1rem;
+  gap: 14px;
+  color: var(--auth-muted);
+  background: #08090d;
 }
-
-.help-link {
-  color: #666;
-  font-size: 0.85rem;
-  text-decoration: none;
-  transition: color 0.3s ease;
+.auth-page .auth-spinner {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 3px solid rgba(212, 175, 55, 0.15);
+  border-top-color: var(--auth-gold);
+  animation: auth-spin 0.8s linear infinite;
 }
-
-.help-link:hover {
-  color: #4caf50;
-  text-decoration: underline;
-}
-
-/* Security Notice */
-.security-notice {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  background: linear-gradient(135deg, #e3f2fd, #f1f8e9);
-  border-radius: 12px;
-  padding: 1rem;
-  margin-top: 2rem;
-  border: 1px solid #bbdefb;
-}
-
-.security-icon {
-  width: 24px;
-  height: 24px;
-  color: #1976d2;
-  flex-shrink: 0;
-}
-
-.security-content h4 {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #1a1a1a;
-  margin: 0 0 0.25rem 0;
-}
-
-.security-content p {
-  font-size: 0.8rem;
-  color: #666;
-  margin: 0;
-  line-height: 1.4;
-}
-
-/* Animations */
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.05);
-    opacity: 0.8;
+@keyframes auth-spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+/* Entrance: brand content rises in sequence, card fades/scales in */
+.auth-page .auth-visual__inner > * {
+  animation: mb-fade-up 560ms cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+}
+.auth-page .auth-visual__inner > *:nth-child(2) { animation-delay: 60ms; }
+.auth-page .auth-visual__inner > *:nth-child(3) { animation-delay: 120ms; }
+.auth-page .auth-visual__inner > *:nth-child(4) { animation-delay: 180ms; }
+.auth-page .auth-visual__inner > *:nth-child(5) { animation-delay: 240ms; }
+.auth-page .auth-panel__inner {
+  animation: mb-scale-in 480ms cubic-bezier(0.2, 0.7, 0.2, 1) 80ms backwards;
 }
 
-@keyframes slideIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-10px);
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+  .auth-page {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .brand-title {
-    font-size: 2rem;
-  }
-  
-  .feature-card {
-    padding: 1.25rem;
-  }
-
-  .trust-badges {
-    flex-direction: column;
-    align-items: center;
+  .auth-page .auth-visual__art {
+    display: none;
   }
 }
 
-@media (max-width: 768px) {
-  .signin-container {
-    flex-direction: column;
+/* Tablet & phone: single column, brand panel hidden, compact logo above the card */
+@media (max-width: 860px) {
+  .auth-page {
+    grid-template-columns: minmax(0, 1fr);
   }
-  
-  .signin-left {
-    flex: none;
-    min-height: 50vh;
-    padding: 2rem 1.5rem;
+  .auth-page .auth-visual {
+    display: none;
   }
-  
-  .brand-title {
-    font-size: 1.75rem;
+  .auth-page .auth-panel {
+    align-items: flex-start;
+    padding-top: clamp(28px, 7vw, 56px);
+    background: radial-gradient(500px 360px at 50% 0%, rgba(212, 175, 55, 0.14), transparent 70%), #08090d;
   }
-  
-  .medical-features {
-    gap: 1rem;
-  }
-  
-  .feature-card {
-    padding: 1rem;
-  }
-  
-  .signin-right {
-    flex: 1;
-    min-height: 50vh;
-    padding: 1.5rem;
-  }
-  
-  .form-title {
-    font-size: 1.5rem;
-  }
-
-  .help-links {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .security-notice {
-    flex-direction: column;
-    text-align: center;
+  .auth-page .auth-brand--compact {
+    display: inline-flex;
+    align-self: center;
+    margin-bottom: 4px;
   }
 }
 
-@media (max-width: 480px) {
-  .signin-left {
-    padding: 1.5rem 1rem;
+@media (max-width: 400px) {
+  .auth-page .auth-panel {
+    padding-left: 12px;
+    padding-right: 12px;
   }
-  
-  .brand-title {
-    font-size: 1.5rem;
+  .auth-page .cl-card {
+    padding: 22px 18px 18px !important;
   }
-  
-  .brand-subtitle {
-    font-size: 1rem;
-  }
-  
-  .feature-icon {
-    width: 32px;
-    height: 32px;
-  }
-  
-  .feature-content h3 {
-    font-size: 1rem;
-  }
-  
-  .form-icon {
-    width: 48px;
-    height: 48px;
-  }
-  
-  .form-title {
-    font-size: 1.25rem;
-  }
+}
 
-  .trust-badges {
-    gap: 0.25rem;
+@media (prefers-reduced-motion: reduce) {
+  .auth-page .auth-feature,
+  .auth-page .auth-spinner {
+    transition: none;
+    animation-duration: 2s;
   }
+  .auth-page .auth-visual__art {
+    transform: none;
+  }
+}
 
-  .badge {
-    font-size: 0.65rem;
-    padding: 0.2rem 0.5rem;
+/* Short laptop screens: drop the illustration so the whole page fits without scrolling */
+@media (min-width: 861px) and (max-height: 860px) {
+  .auth-page .auth-visual__art {
+    display: none;
+  }
+  .auth-page .auth-visual__title {
+    margin-top: 28px;
   }
 }

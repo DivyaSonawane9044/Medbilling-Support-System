@@ -90,6 +90,7 @@ export default function DataTable({
             <input
               className="dt-search"
               type="search"
+              aria-label={title ? `Search ${title}` : "Search table"}
               placeholder="Search..."
               value={query}
               onChange={(e) => {
@@ -110,6 +111,18 @@ export default function DataTable({
                   key={c.key}
                   className={`${c.align === "right" ? "num" : ""} ${c.sortable ? "sortable" : ""}`}
                   onClick={c.sortable ? () => toggleSort(c.key) : undefined}
+                  onKeyDown={
+                    c.sortable
+                      ? (e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            toggleSort(c.key);
+                          }
+                        }
+                      : undefined
+                  }
+                  tabIndex={c.sortable ? 0 : undefined}
+                  aria-sort={sort.key === c.key ? (sort.dir === "asc" ? "ascending" : "descending") : undefined}
                 >
                   <span className="th-label">{c.header}</span>
                   {sort.key === c.key ? <span className="th-sort">{sort.dir === "asc" ? "▲" : "▼"}</span> : null}
@@ -149,7 +162,13 @@ export default function DataTable({
         <div className="dt-pager">
           <label className="dt-page-size">
             Rows:
-            <select value={pageSize} onChange={(e) => setPageSize(Number(e.target.value))}>
+            <select
+              value={pageSize}
+              onChange={(e) => {
+                setPageSize(Number(e.target.value));
+                setPage(1);
+              }}
+            >
               {pageSizeOptions.map((o) => (
                 <option value={o} key={o}>
                   {o}

@@ -1,0 +1,195 @@
+/* Shared bits for Customers / Suppliers / Medicine Schedule (page-local, not part of the UI kit). */
+
+/* ---------- Dosage toggles ---------- */
+.pp-dose-toggles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--mb-s2);
+}
+.pp-dose-toggle {
+  --tone: var(--mb-teal-700);
+  --tone-bg: var(--mb-mint);
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 10px 6px;
+  border: 1.5px solid var(--mb-border);
+  border-radius: var(--mb-r-md);
+  background: var(--mb-surface);
+  color: var(--mb-text-2);
+  font-size: var(--mb-fs-xs);
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  min-width: 0;
+  transition: border-color var(--mb-dur-fast) var(--mb-ease), background var(--mb-dur-fast) var(--mb-ease),
+    color var(--mb-dur-fast) var(--mb-ease), transform var(--mb-dur-fast) var(--mb-ease);
+}
+.pp-dose-toggle--morning { --tone: var(--mb-warning); --tone-bg: var(--mb-warning-bg); }
+.pp-dose-toggle--afternoon { --tone: #fdba74; --tone-bg: var(--mb-coral); }
+.pp-dose-toggle--evening { --tone: var(--mb-purple); --tone-bg: var(--mb-purple-bg); }
+.pp-dose-toggle--night { --tone: var(--mb-navy); --tone-bg: var(--mb-ice); }
+.pp-dose-toggle input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.pp-dose-toggle:hover { border-color: var(--mb-border-strong); transform: translateY(-1px); }
+.pp-dose-toggle:focus-within { box-shadow: var(--mb-ring); }
+.pp-dose-toggle__icon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--mb-surface-muted);
+  transition: background var(--mb-dur-fast) var(--mb-ease), color var(--mb-dur-fast) var(--mb-ease);
+}
+.pp-dose-toggle__label { overflow-wrap: anywhere; text-align: center; }
+.pp-dose-toggle.is-on {
+  border-color: var(--tone);
+  background: var(--tone-bg);
+  color: var(--tone);
+}
+.pp-dose-toggle.is-on .pp-dose-toggle__icon { background: var(--mb-surface); color: var(--tone); }
+
+/* ---------- Dosage chips (read-only) ---------- */
+.pp-dose-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: var(--mb-r-pill);
+  font-size: var(--mb-fs-xs);
+  font-weight: 600;
+  background: var(--mb-mint);
+  color: var(--mb-teal-700);
+}
+.pp-dose-chip--morning { background: var(--mb-warning-bg); color: var(--mb-warning); }
+.pp-dose-chip--afternoon { background: var(--mb-coral); color: #fdba74; }
+.pp-dose-chip--evening { background: var(--mb-purple-bg); color: var(--mb-purple); }
+.pp-dose-chip--night { background: var(--mb-ice); color: var(--mb-navy); }
+.pp-dose-none { color: var(--mb-text-3); font-size: var(--mb-fs-xs); }
+.pp-dose-code {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: var(--mb-r-sm);
+  border: 1px dashed var(--mb-border-strong);
+  color: var(--mb-text-2);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  font-size: var(--mb-fs-xs);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+/* ---------- Segmented radios ---------- */
+.pp-seg {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--mb-r-md);
+  background: var(--mb-surface-muted);
+  border: 1px solid var(--mb-border);
+  max-width: 100%;
+}
+.pp-seg__opt {
+  position: relative;
+  padding: 6px 12px;
+  border-radius: var(--mb-r-sm);
+  font-size: var(--mb-fs-sm);
+  font-weight: 600;
+  color: var(--mb-text-2);
+  cursor: pointer;
+  transition: background var(--mb-dur-fast) var(--mb-ease), color var(--mb-dur-fast) var(--mb-ease);
+}
+.pp-seg__opt input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.pp-seg__opt:focus-within { box-shadow: var(--mb-ring); }
+.pp-seg__opt.is-on { background: var(--mb-surface); color: var(--mb-teal-700); box-shadow: var(--mb-shadow-xs); }
+
+/* ---------- Inline messages ---------- */
+.pp-msg {
+  font-size: var(--mb-fs-sm);
+  padding: 9px 12px;
+  border-radius: var(--mb-r-sm);
+  border: 1px solid transparent;
+  overflow-wrap: anywhere;
+}
+.pp-msg--success { background: var(--mb-success-bg); color: var(--mb-success); border-color: rgba(15, 159, 110, 0.18); }
+.pp-msg--error { background: var(--mb-danger-bg); color: var(--mb-danger); border-color: rgba(214, 69, 69, 0.18); }
+
+/* ---------- Amount / info chips ---------- */
+.pp-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: var(--mb-r-pill);
+  font-size: var(--mb-fs-xs);
+  font-weight: 700;
+  background: var(--mb-surface-muted);
+  color: var(--mb-text);
+  border: 1px solid var(--mb-border);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.pp-chip--warning { background: var(--mb-warning-bg); color: var(--mb-warning); border-color: transparent; }
+.pp-chip--success { background: var(--mb-success-bg); color: var(--mb-success); border-color: transparent; }
+.pp-chip--info { background: var(--mb-info-bg); color: var(--mb-info); border-color: transparent; }
+.pp-chip--purple { background: var(--mb-purple-bg); color: var(--mb-purple); border-color: transparent; }
+.pp-chip--navy { background: var(--mb-ice); color: var(--mb-navy); border-color: transparent; }
+
+.pp-mono { font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; letter-spacing: 0.02em; }
+
+/* Section card heading used by the people pages */
+.pp-card-head {
+  display: flex;
+  align-items: center;
+  gap: var(--mb-s3);
+  margin-bottom: var(--mb-s4);
+}
+.pp-card-head__icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--mb-r-md);
+  background: var(--mb-mint);
+  color: var(--mb-teal-700);
+}
+.pp-card-head__icon--navy { background: var(--mb-ice); color: var(--mb-navy); }
+.pp-card-head__icon--purple { background: var(--mb-purple-bg); color: var(--mb-purple); }
+.pp-card-head__icon--warning { background: var(--mb-warning-bg); color: var(--mb-warning); }
+.pp-card-head__icon--info { background: var(--mb-info-bg); color: var(--mb-info); }
+.pp-card-head__text { min-width: 0; flex: 1; }
+.pp-card-head h3,
+.pp-card-head h4 {
+  margin: 0;
+  font-size: var(--mb-fs-lg);
+  font-weight: 700;
+  color: var(--mb-text);
+}
+.pp-card-head p {
+  margin: 2px 0 0;
+  font-size: var(--mb-fs-xs);
+  color: var(--mb-text-2);
+}
+
+@media (max-width: 420px) {
+  .pp-dose-toggles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

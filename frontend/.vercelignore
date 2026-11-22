@@ -1,0 +1,12 @@
+# Never upload local secrets, sessions or test output to Vercel
+.env
+.env.*
+!.env.example
+node_modules
+dist
+e2e-artifacts
+playwright-report*
+test-results*
+tests
+e2e
+*.log

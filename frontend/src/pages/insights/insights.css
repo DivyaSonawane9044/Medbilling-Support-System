@@ -134,7 +134,7 @@
   border-radius: 12px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0) 60%), var(--mb-mint);
   color: var(--mb-gold);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 0 0 1px rgba(212, 175, 55, 0.22), 0 8px 18px -10px rgba(212, 175, 55, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 0 0 1px rgba(var(--mb-gold-rgb), 0.22), 0 8px 18px -10px rgba(var(--mb-gold-rgb), 0.55);
 }
 .ins-card__icon--warning { background: var(--mb-warning-bg); color: var(--mb-warning); }
 .ins-card__icon--danger { background: var(--mb-danger-bg); color: var(--mb-danger); }

@@ -18,8 +18,8 @@ test("design tokens, fonts and theme are applied globally", async ({ page, monit
   });
   // White Medical theme is the default (Black + Gold is the optional dark theme)
   expect(await page.evaluate(() => document.documentElement.dataset.theme)).toBe("light");
-  expect(t.gold).toBe("#b08a22");
-  expect(t.gold2).toBe("#8f6f17");
+  expect(t.gold).toBe("#0e7f78"); // medical teal accent
+  expect(t.gold2).toBe("#0b5f5a");
   expect(t.bg).toBe("rgb(245, 247, 250)");
   expect(t.font).toMatch(/^Inter/);
   expect(t.sidebar).toBe("rgb(255, 255, 255)"); // white sidebar

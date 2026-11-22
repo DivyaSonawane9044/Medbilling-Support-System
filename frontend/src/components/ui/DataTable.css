@@ -81,7 +81,7 @@
 }
 
 .dt-table tbody tr:hover td {
-  background: rgba(212, 175, 55, 0.05);
+  background: rgba(var(--mb-gold-rgb), 0.05);
 }
 
 .dt-table tbody tr:last-child td {

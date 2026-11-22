@@ -39,8 +39,8 @@ const clerkThemes = {
   },
   light: {
     variables: {
-      colorPrimary: "#b08a22",
-      colorTextOnPrimaryBackground: "#1c1606",
+      colorPrimary: "#0e7f78",
+      colorTextOnPrimaryBackground: "#ffffff",
       colorText: "#111827",
       colorTextSecondary: "#5b6475",
       colorBackground: "#ffffff",

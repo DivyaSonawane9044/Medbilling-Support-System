@@ -769,8 +769,8 @@
   background: var(--mb-grad-brand);
   color: #fff;
   overflow: hidden;
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  box-shadow: inset 0 1px 0 rgba(244, 214, 117, 0.25), 0 16px 34px -18px rgba(212, 175, 55, 0.55);
+  border: 1px solid rgba(var(--mb-gold-rgb), 0.4);
+  box-shadow: inset 0 1px 0 rgba(var(--mb-gold-2-rgb), 0.25), 0 16px 34px -18px rgba(var(--mb-gold-rgb), 0.55);
 }
 .sum-grand-card::after {
   content: "";
@@ -780,7 +780,7 @@
   width: 140px;
   height: 140px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.35), transparent 70%);
+  background: radial-gradient(circle, rgba(var(--mb-gold-rgb), 0.35), transparent 70%);
   pointer-events: none;
 }
 .sum-grand-label {
@@ -805,7 +805,7 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 2px 12px rgba(212, 175, 55, 0.35));
+  filter: drop-shadow(0 2px 12px rgba(var(--mb-gold-rgb), 0.35));
   font-variant-numeric: tabular-nums;
   line-height: 1.15;
   overflow-wrap: anywhere;

@@ -56,6 +56,7 @@ import {
   ChartCard,
   Timeline,
   DataTable,
+  MedicalIllustration,
 } from "../components/ui";
 import {
   analyticsAPI,
@@ -516,11 +517,7 @@ const Dashboard = () => {
             <dd>{isPending(sec.dash) ? "…" : units(num(dash?.lowStockCount) + num(dash?.nearExpiryCount))}</dd>
           </div>
         </dl>
-        <div className="mb-deco" aria-hidden="true">
-          <span className="mb-deco__item mb-deco__ring" style={{ right: "4%", top: "-30px" }} />
-          <span className="mb-deco__item mb-deco__capsule" style={{ right: "9%", top: "26px", "--mb-float-rot": "-24deg" }} />
-          <span className="mb-deco__item mb-deco__tablet" style={{ right: "22%", top: "16px", animationDelay: "-2.5s" }} />
-        </div>
+        <MedicalIllustration className="dash-hero-art" />
       </PageHeader>
 
       {failed.length > 0 && (
@@ -626,9 +623,9 @@ const Dashboard = () => {
             <AreaChart key={revRange} data={revSeries} margin={{ top: 10, right: 16, bottom: 0, left: 0 }}>
               <defs>
                 <linearGradient id="dashRevFill" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0" stopColor="#d4af37" stopOpacity={0.42} />
-                  <stop offset="0.6" stopColor="#d4af37" stopOpacity={0.08} />
-                  <stop offset="1" stopColor="#d4af37" stopOpacity={0} />
+                  <stop offset="0" stopColor={gold.fill} stopOpacity={0.42} />
+                  <stop offset="0.6" stopColor={gold.fill} stopOpacity={0.08} />
+                  <stop offset="1" stopColor={gold.fill} stopOpacity={0} />
                 </linearGradient>
                 <linearGradient id="dashRevStroke" x1="0" x2="1" y1="0" y2="0">
                   <stop offset="0" stopColor={gold.line[0]} />

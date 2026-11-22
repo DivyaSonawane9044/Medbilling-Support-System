@@ -3,13 +3,13 @@ import { NavLink, useLocation } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import { useUser } from "@clerk/clerk-react";
 import {
-  LayoutDashboard,
+  HeartPulse,
   ReceiptText,
   Boxes,
   Truck,
   CalendarClock,
   Pill,
-  ClipboardList,
+  ClipboardPlus,
   Users,
   Building2,
   CreditCard,
@@ -28,7 +28,7 @@ import "./Sidebar.css";
 export const NAV_GROUPS = [
   {
     title: "Overview",
-    links: [["/dashboard", "Dashboard", LayoutDashboard]],
+    links: [["/dashboard", "Dashboard", HeartPulse]],
   },
   {
     title: "Operations",
@@ -38,7 +38,7 @@ export const NAV_GROUPS = [
       ["/purchases", "Purchases", Truck],
       ["/expiry-tracking", "Expiry & Batch Tracking", CalendarClock],
       ["/product-master", "Medicine Catalog & Pricing", Pill],
-      ["/medicine-schedule", "Medicine Schedule", ClipboardList],
+      ["/medicine-schedule", "Medicine Schedule", ClipboardPlus],
     ],
   },
   {
@@ -97,7 +97,7 @@ function Sidebar({ open = false, onClose, collapsed = false, onToggleCollapse })
             <h2 className="sidebar-title">
               Med<span>Billing</span>
             </h2>
-            <p className="sidebar-subtitle">Premium Pharmacy Suite</p>
+            <p className="sidebar-subtitle">Pharmacy &amp; Clinic Suite</p>
           </div>
           <button type="button" className="sidebar-close" onClick={onClose} aria-label="Close menu">
             <X size={20} />

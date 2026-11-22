@@ -14,8 +14,8 @@
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(900px 520px at 88% -8%, rgba(212, 175, 55, 0.11), transparent 62%),
-    radial-gradient(700px 480px at 18% 108%, rgba(244, 214, 117, 0.05), transparent 60%),
+    radial-gradient(900px 520px at 88% -8%, rgba(var(--mb-gold-rgb), 0.11), transparent 62%),
+    radial-gradient(700px 480px at 18% 108%, rgba(var(--mb-gold-2-rgb), 0.05), transparent 60%),
     radial-gradient(800px 600px at 45% 40%, rgba(90, 110, 160, 0.04), transparent 70%);
 }
 

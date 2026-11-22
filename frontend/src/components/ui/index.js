@@ -17,3 +17,4 @@ export { default as Badge } from "./Badge";
 export { default as FormField } from "./FormField";
 export { default as TextInput } from "./TextInput";
 export { default as Select } from "./Select";
+export { default as MedicalIllustration } from "./MedicalIllustration";

@@ -42,3 +42,6 @@ frontend/playwright-report/
 frontend/test-results/
 frontend/test-results*/
 frontend/playwright-report*/
+
+# Vercel CLI project link
+.vercel/

@@ -1,7 +1,8 @@
 # CI: runs the frontend and backend tests on every pull request and on every push to main.
-# Deployments are handled by the hosting platforms themselves (CD):
-#   - Render redeploys the backend on each push to main (render.yaml, autoDeploy)
-#   - Vercel redeploys the frontend on each push to main (Vercel Git integration)
+# CD:
+#   - Backend: Render redeploys on each push to main (render.yaml, autoDeploy)
+#   - Frontend: the deploy-frontend job below publishes to Vercel after both test jobs pass
+#     (needs the VERCEL_TOKEN repository secret)
 name: CI
 
 on:
@@ -41,3 +42,26 @@ jobs:
           java-version: 21
           cache: maven
       - run: chmod +x mvnw && ./mvnw -B test
+
+  deploy-frontend:
+    name: Deploy frontend to Vercel (production)
+    needs: [frontend, backend]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    env:
+      # Project identifiers (not secrets). The token lives in Settings -> Secrets -> Actions -> VERCEL_TOKEN.
+      VERCEL_ORG_ID: team_Iy1T5uVZz8hVkGvm3JtHomC3
+      VERCEL_PROJECT_ID: prj_zkcDTqrvGNpuLkgVhuTVUKCFYb2o
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Pull project settings and environment variables
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
